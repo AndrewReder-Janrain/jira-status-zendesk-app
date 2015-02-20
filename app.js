@@ -1,43 +1,69 @@
 
 
-	(function() {
-	var jiraUrl = '',
-	jiraStatus = "No Status",
-	jiraComments = [],
-	errorMessage ='',
-	jiraTicket = '',
-	jiraId = '';
+(function() {
+		var jiraUrl = '',
+		jiraStatus = "No Status",
+		jiraComments = [],
+		errorMessage ='',
+		jiraTicket = 'TP-1',
+		jiraId = '',
+		statusMessage = '',
+		baseUrl = 'http://localhost:2990/jira/rest/api/2/issue/',
+		jiraData = '';
 	return {
 	events: {
 		'app.activated':'init'
+	},
+	requests: {
+		jiraRequest: {
+			url: jiraUrl,
+			type: 'GET',
+			cors: true,
+			dataType: 'json',
+			success: function(result){
+				alert(result);
+				jiraData = JSON.stringify(result);
+			},
+			error: function(req,stat,err){
+				alert(JSON.stringify(req));
+				alert(stat);
+				alert(err);
+			}/*,
+			xhrFields: {
+				withCredentials: true
+			}*/
+		}
 	},
 	init: function() {
 		this.getJiraUrl();
 	},
 	getJiraUrl: function() {
-		jiraURL = $('#ember2692').text();
-		if (jiraURL.indexOf("https://")<0){
-			statusMessage = "No valid JIRA URL";
-		}
-		else{
-			linkJiraTicket();
-		}
+		jiraUrl = baseUrl + jiraTicket;
+		//jiraUrl = $('#ember2692').text();
+		alert(jiraUrl);
+		//if (jiraUrl.indexOf("http://")<0){
+		//	statusMessage = "No valid JIRA URL";
+		//}
+		//else{
+			this.linkJiraTicket();
+		//}
 	},
 	linkJiraTicket: function() {
-		$.get(jiraURL,function(response) {
-				alert( "success" );
-				jiraTicket = response;
-				parseJiraTicket();
-		});
+		alert('Entered linkJiraTicket');
+		this.$.ajax('jiraRequest');
+		//alert(jiraData);
+
 	},
 	parseJiraTicket: function() {
-		jiraId = result['id'];
-		jiraComments = result['fields']['comments'];
-		jiraStatus = result['fields']['status']['name'];
-		showTemplate();
+		alert('Entered parseJiraTicket');
+		//jiraId = jiraData['id'];
+		//jiraComments = jiraData['fields']['comments'];
+		//jiraStatus = jiraData['fields']['status']['name'];
+		this.showTemplate();
 	},
 	showTemplate: function(){
-		this.switchTo('hello', {
+		alert('Entered showTemplate');
+		this.switchTo('layout', {
 			jiraUrl: jiraUrl,
 			jiraStatus: jiraStatus,
 			jiraComments: jiraComments,

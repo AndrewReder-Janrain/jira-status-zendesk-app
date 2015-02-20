@@ -1,12 +1,6 @@
 <header>
   <h3>JIRA Test Plugin</h3>
 </header>
-<section>
-	<ul>
-		<li>Jira URL: {{ jiraUrl }}</li>
-		<li>Jira URL: {{ jiraStatus }}</li>
-		<li>Jira URL: {{ jiraComments }}</li>
-		<li>Jira URL: {{ jiraId }}</li>
-		<li>Jira URL: {{ jiraTicket }}</li>
-	</ul>
+<section data-main>
+
 </section>

@@ -1,8 +1,3 @@
 <ul>
-	<li>Jira ID: {{ jiraId }}</li>
-	<li>Jira Status: {{ jiraStatus }}</li>
-	<li>Jira Status: {{jiraStatusColor}}</li>
-	<li>Assignee: {{ jiraAssignee }}</li>
-	<li>Last Updated: {{ jiraUpdated }}</li>
-	<li>Jira Comments: {{ jiraComments }}</li>
+	<li>Jira Description: {{ jiraDescription }}</li>
 </ul>
